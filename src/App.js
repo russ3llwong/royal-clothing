@@ -24,7 +24,7 @@ class App extends React.Component {
     // firebase will keep track of user session
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
-        const userRef = createUserProfileDocument(userAuth);
+        const userRef = await createUserProfileDocument(userAuth);
 
         // gets documentSnapshot
         userRef.onSnapshot(snapShot => {
@@ -34,9 +34,6 @@ class App extends React.Component {
               id: snapShot.id, // uid
               ...snapShot.data() // other data of user
             }
-          }, () => {
-            // callback because setState is async
-            console.log(this.state);
           });
 
         });
