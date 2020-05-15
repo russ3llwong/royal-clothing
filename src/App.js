@@ -5,7 +5,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { setCurrentUser } from './redux/user/userActions';
 import { selectCurrentUser } from './redux/user/userSelectors';
-
 import HomePage from './pages/homepage/homepage.component';
 import CheckoutPage from './pages/checkout/checkout.component';
 import ShopPage from './pages/shop/shop.component';
@@ -27,19 +26,23 @@ class App extends React.Component {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         // gets documentSnapshot
+        // gets fired whenever snapshot changes
         userRef.onSnapshot(snapShot => {
           setCurrentUser({
               id: snapShot.id, // uid
               ...snapShot.data() // other data of user
           });
         });
-      } else {
-        // set currentUser to null
-        setCurrentUser(userAuth)
-      }
+      } 
       
+      setCurrentUser(userAuth);
+      // move shop data into firebase only once
+      // addCollectionAndDocuments(
+      //   'collections', 
+      //   collectionsArray.map(({title, items}) => ({title, items})))
     });
   }
+
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
