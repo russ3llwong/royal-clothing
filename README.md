@@ -4,7 +4,7 @@
 
 ## Quick Start
 - Download/clone repository, and navigate to project directory.
-- Run 'npm i' in both project directory and /client directory.
+- Run `npm i` in both project directory and /client directory.
 - If you intend to make payments, create a *.env* file in project directory with your Stripe secret key as such:
     `STRIPE_SECRET_KEY=key_without_quotes`
-- Run 'npm run dev'
+- Run `npm run dev` in project directory. Go to localhost:3000.
