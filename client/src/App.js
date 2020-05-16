@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import GlobalStyle from './global.styles';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
@@ -51,6 +51,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <GlobalStyle />
         <Header/>
         <Switch>
           <Route exact path='/' component={HomePage} />
