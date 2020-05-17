@@ -9,9 +9,13 @@ const ContactPage = () => (
             <h3 className='creator'>Russell Wong</h3>
             <p>This application is created for demo purposes.</p>
             <p>Email: russellwong97@hotmail.com</p>
-            <a href="https://linkedin.com/in/russell-s-wong" className='link'>My LinkedIn</a> 
+            <a href="https://linkedin.com/in/russell-s-wong" className='link' target="_blank" rel="noopener noreferrer">
+                My LinkedIn
+            </a> 
             <br/><br/>
-            <a href="https://https://github.com/russ3llwong" className='link'>My GitHub</a>
+            <a href="https://github.com/russ3llwong" className='link' target="_blank" rel="noopener noreferrer">
+                My GitHub
+            </a>
         </div>
     </div>
 )
