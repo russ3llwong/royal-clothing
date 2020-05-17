@@ -9,35 +9,20 @@ import CheckoutPage from './pages/checkout/checkout.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component'
+import { checkUserSession } from './redux/user/userActions';
 
 class App extends React.Component {
 
   unsubscribeFromAuth = null
 
   componentDidMount() {
-
-    // firebase will keep track of user session
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth);
-    //     // gets documentSnapshot
-    //     // gets fired whenever snapshot changes
-    //     userRef.onSnapshot(snapShot => {
-    //       setCurrentUser({
-    //           id: snapShot.id, // uid
-    //           ...snapShot.data() // other data of user
-    //       });
-    //     });
-    //   } 
-      
-    //   setCurrentUser(userAuth);
-
-      // **this was only ran once to upload shop data to firestore
-      // addCollectionAndDocuments(
-      //   'collections', 
-      //   collectionsArray.map(({title, items}) => ({title, items})))
-    // });
+    const { checkUserSession } = this.props;
+    checkUserSession();
+    
+    // **this was only ran once to upload shop data to firestore
+    // addCollectionAndDocuments(
+    //   'collections', 
+    //   collectionsArray.map(({title, items}) => ({title, items})))
   }
 
 
@@ -69,7 +54,11 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
-})
+});
+
+const mapDispatchToProps = dispatch => ({
+  checkUserSession: () => dispatch(checkUserSession())
+});
 
 // app does not need mapStateToProps hence null for 1st arg
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -5,7 +5,7 @@ const INITIAL_STATE = {
     error: null
 }
 
-// if state is nil, default to initial state
+// if state is null, default to initial state
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case UserActionTypes.SIGN_IN_SUCCESS:
@@ -14,7 +14,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 currentUser: action.payload,
                 error: null
             }
+        case UserActionTypes.SIGN_OUT_SUCCESS:
+            return {
+                ...state,
+                currentUser: null,
+                error: null
+            }
         case UserActionTypes.SIGN_IN_FAILURE:
+        case UserActionTypes.SIGN_OUT_FAILURE:
             return {
                 ...state,
                 error: action.payload
